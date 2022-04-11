@@ -1750,16 +1750,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 775142844641583677, guid: 77955bf595c4c644897a8c18e84f58ec,
-        type: 3}
-      propertyPath: m_UseGravity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3426445682575703451, guid: 77955bf595c4c644897a8c18e84f58ec,
-        type: 3}
-      propertyPath: m_Convex
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8964641643760286003, guid: 77955bf595c4c644897a8c18e84f58ec,
         type: 3}
       propertyPath: m_RootOrder
