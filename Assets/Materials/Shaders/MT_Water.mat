@@ -48,6 +48,6 @@ Material:
     - _Strength: 0.37
     - _Waves: 100
     m_Colors:
-    - _DeepWater: {r: 0.101960786, g: 0.37600857, b: 0.62352943, a: 0.8509804}
-    - _ShallowWater: {r: 0.19530964, g: 0.6328884, b: 0.7264151, a: 0.9019608}
+    - _DeepWater: {r: 0.101960756, g: 0.37600854, b: 0.62352943, a: 0.42745098}
+    - _ShallowWater: {r: 0.19530961, g: 0.6328884, b: 0.7264151, a: 0.5529412}
   m_BuildTextureStacks: []
