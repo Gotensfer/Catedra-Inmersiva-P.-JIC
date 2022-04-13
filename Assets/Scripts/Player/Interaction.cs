@@ -10,14 +10,12 @@ public class Interaction : MonoBehaviour
 
         if (interactive != null)
         {
-            interactive.InteractMeter += Time.fixedDeltaTime / 2f;
-
-            if (!interactive.Interacted && interactive.InteractMeter == 1)
+            //Button.One es (supuestamente) el botón para Oculus Rift, es imposible hacer pruebas reales sin el Oculus Quest disponible
+            if (Input.GetButtonDown("Fire1") && !interactive.Interacted)
             {
                 interactive.Interacted = true;
                 interactive.Interact();
             }
-        }
-        
+        }        
     }
 }
