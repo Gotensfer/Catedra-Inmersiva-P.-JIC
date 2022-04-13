@@ -11,7 +11,7 @@ public class Interaction : MonoBehaviour
         if (interactive != null)
         {
             //Button.One es (supuestamente) el botón para Oculus Rift, es imposible hacer pruebas reales sin el Oculus Quest disponible
-            if (Input.GetButtonDown("Fire1") && !interactive.Interacted)
+            if (Input.GetButton("Fire1") && !interactive.Interacted)
             {
                 interactive.Interacted = true;
                 interactive.Interact();
