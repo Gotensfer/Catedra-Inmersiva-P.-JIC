@@ -24,7 +24,7 @@ public class Outline : MonoBehaviour {
     SilhouetteOnly
   }
 
-    internal void Eenabled(bool v)
+    internal void enabled(bool v)
     {
         throw new NotImplementedException();
     }

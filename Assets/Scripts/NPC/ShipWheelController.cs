@@ -14,6 +14,7 @@ public class ShipWheelController : MonoBehaviour, IInteractive
     {
         print("mmgvo");
         ship.CanMove = true;
-        cOutline.Eenabled(true);
+        cOutline.OutlineWidth = 4;
+        this.GetComponent<Outline>().OutlineWidth = 0;
     }
 }
