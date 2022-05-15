@@ -14,6 +14,7 @@ public class Movement : MonoBehaviour
 
     private void FixedUpdate() 
     {
-        rb.AddForce(transform.forward * speed, ForceMode.Force);
+        //rb.AddForce(transform.forward * speed, ForceMode.Force);
+        transform.Translate(Vector3.forward * Time.fixedDeltaTime);
     }
 }

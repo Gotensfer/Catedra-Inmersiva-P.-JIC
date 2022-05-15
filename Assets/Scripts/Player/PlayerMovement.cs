@@ -18,7 +18,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate() //Para evitar Glitchearse al intentar moverse contra una pared o barrera
     {
-        transform.Translate(direction.forward * speedZ * Time.fixedDeltaTime);
-        transform.Translate(direction.right * speedX * Time.fixedDeltaTime);
+        transform.Translate(direction.forward * speedZ * playerSpeed * Time.fixedDeltaTime);
+        transform.Translate(direction.right * speedX * playerSpeed * Time.fixedDeltaTime);
+
+        // Simular una gravedad debido a que este objeto está marcado como Kinematico
+
     }
 }
