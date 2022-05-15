@@ -24,7 +24,12 @@ public class Outline : MonoBehaviour {
     SilhouetteOnly
   }
 
-  public Mode OutlineMode {
+    internal void Eenabled(bool v)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Mode OutlineMode {
     get { return outlineMode; }
     set {
       outlineMode = value;
