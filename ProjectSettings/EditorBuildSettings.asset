@@ -4,7 +4,13 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/RoloPoli/MainScene.unity
+    guid: 6a9da472d396f3445a97db7cd46235c5
+  - enabled: 0
+    path: Assets/Scenes/Ship Colon Cinematic.unity
+    guid: 2258747f9f70a15469b3d811cc450b08
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260,
       type: 2}
