@@ -13,13 +13,18 @@ public class ColonInteract : MonoBehaviour, IInteractive
 
     public void Interact()
     {
-        if (ship.CanMove)
+        if (interacted) print("|NPC : Colon| CAN'T INTERACT, Has already been interacted with");
+        else
         {
-            print("Se reproduce el video que no tenemos");
-            outline.OutlineWidth = 0;
-            screen.SetActive(true);
-        }  
+            if (ship.CanMove)
+            {
+                outline.OutlineWidth = 0;
+                screen.SetActive(true);
+                interacted = true;
 
-        else interacted = false;
+                print("|NPC : Colon| Interacted succesfully");
+            }
+            else print("|NPC : Colon| CAN'T INTERACT, Interaction condition hasn't been achieved");
+        }     
     }
 }

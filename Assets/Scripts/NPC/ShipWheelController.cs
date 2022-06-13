@@ -12,9 +12,16 @@ public class ShipWheelController : MonoBehaviour, IInteractive
 
     public void Interact()
     {
-        print("mmgvo");
-        ship.CanMove = true;
-        cOutline.OutlineWidth = 4;
-        this.GetComponent<Outline>().OutlineWidth = 0;
+        if (interacted) print("|STEERING WHEEL| CAN'T INTERACT, Has already been interacted with");
+        else
+        {
+            ship.CanMove = true;
+            cOutline.OutlineWidth = 4;
+            this.GetComponent<Outline>().OutlineWidth = 0;
+            interacted = true;
+
+            print("|STEERING WHEEL| Interacted succesfully");
+        }
+
     }
 }
