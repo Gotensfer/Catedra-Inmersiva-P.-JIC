@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Experimental/VR Implementation/Scenes/Catedra VR Simulada.unity
+    guid: 0d9d73034ce4dcd40a5d0dd1f0050cba
+  - enabled: 0
     path: Assets/Scenes/RoloPoli/MainScene.unity
     guid: 6a9da472d396f3445a97db7cd46235c5
   - enabled: 0
