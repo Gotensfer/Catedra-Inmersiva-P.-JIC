@@ -1,27 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Movement : MonoBehaviour
 {
-    Rigidbody rb;
-    [SerializeField] float speed;
+
+
     bool canMove = false;
     public bool CanMove { get => canMove; set => canMove = value;}
-    // Start is called before the first frame update
-    void Start()
-    {
-        rb = GetComponent<Rigidbody>();
-    }
+    [SerializeField] Transform endPosition;
+    [SerializeField] float timeToReachEnd;
 
-    private void FixedUpdate() 
+    public void Move()
     {
-        //rb.AddForce(transform.forward * speed, ForceMode.Force);
-        if (canMove) Move();
-    }
-
-    void Move()
-    {
-        transform.Translate(Vector3.forward * Time.fixedDeltaTime);
+        transform.DOMove(endPosition.position, timeToReachEnd).SetEase(Ease.InOutSine);
     }
 }

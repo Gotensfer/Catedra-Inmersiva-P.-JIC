@@ -15,6 +15,5 @@ public class SteerWheelController : MonoBehaviour, IInteractive
     }
     public void Interact()
     {
-        ship.CanMove = true;
     }
 }
