@@ -31,21 +31,19 @@ public class OtherShipsMovement : MonoBehaviour
         lowerLimitMovement = lowerLimitIdle;        
         upperLimitMovement = lowerLimitMovement + deltaYMovement;
 
-        //StartShipIdle(); 
-        StartShipMovement();
-        Invoke(nameof(StartShipIdle), 3f);
-    }
+        StartShipIdle(); 
+        //StartShipMovement();
+        Invoke(nameof(StopShipIdle), 5f);
 
+    }
 
     public void StartShipMovement()
     {
-        StopShipIdle();
-
         movementSequence = DOTween.Sequence()
             .Append(transform.DOMoveY(upperLimitMovement, periodMovement / 2).SetEase(Ease.InOutQuad))
             .Append(transform.DOMoveY(lowerLimitMovement, periodMovement / 2).SetEase(Ease.InOutQuad));
 
-        movementSequence.SetLoops(-1, LoopType.Restart);
+        movementSequence.SetLoops(999, LoopType.Restart);
 
         transform.DOMoveX(endPosition.position.x, timeToReachEnd).SetEase(Ease.InOutSine);
         transform.DOMoveZ(endPosition.position.z, timeToReachEnd).SetEase(Ease.InOutSine);       
@@ -59,16 +57,26 @@ public class OtherShipsMovement : MonoBehaviour
             .Append(transform.DOMoveY(upperLimitIdle, periodIdle / 2).SetEase(Ease.InOutQuad))
             .Append(transform.DOMoveY(lowerLimitIdle, periodIdle / 2).SetEase(Ease.InOutQuad));
 
-        idleSequence.SetLoops(-1, LoopType.Restart);
+        idleSequence.SetLoops(999, LoopType.Restart);
     }
 
     void StopShipIdle()
     {
-        idleSequence.TogglePause();
+        StartCoroutine(BeginMovement());
     }
 
     void StopShipMovement()
     {
         transform.DOTogglePause();
+    }
+
+    IEnumerator BeginMovement()
+    {
+        print("Coroutine started");
+        yield return idleSequence.WaitForRewind();
+        idleSequence.Complete();
+        print("Completed coroutine");
+        yield return null;
+        StartShipMovement();
     }
 }
