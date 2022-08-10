@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class VR_Teleport : MonoBehaviour
 {
@@ -13,8 +14,6 @@ public class VR_Teleport : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        tpPoint = gameObject.GetComponent<Transform>();
-        position = tpPoint.position;
         time = timer;
     }
 
@@ -26,7 +25,7 @@ public class VR_Teleport : MonoBehaviour
         {
             print("a");
             //Se correria la corrutina que hace esto de abajo
-            transform.position = position; ;
+            SceneManager.LoadScene(1);
         }
     }
 }
