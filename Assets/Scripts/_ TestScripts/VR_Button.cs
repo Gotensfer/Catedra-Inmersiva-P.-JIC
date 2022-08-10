@@ -27,7 +27,6 @@ public class VR_Button : MonoBehaviour
             onReleassed?.Invoke();
             Debug.Log("Me soltaste");
             StartCoroutine(WaitDeadTime());
-
         }
     }
 
