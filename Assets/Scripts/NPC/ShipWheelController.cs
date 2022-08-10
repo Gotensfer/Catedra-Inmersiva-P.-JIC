@@ -17,7 +17,6 @@ public class ShipWheelController : MonoBehaviour, IInteractive
         if (interacted) print("|STEERING WHEEL| CAN'T INTERACT, Has already been interacted with");
         else
         {
-            ship.Move();
             cOutline.OutlineWidth = 4;
             this.GetComponent<Outline>().OutlineWidth = 0;
             interacted = true;
@@ -26,9 +25,8 @@ public class ShipWheelController : MonoBehaviour, IInteractive
 
             foreach (var sh in ships)
             {
-                sh.StartShipMovement();
+                sh.StartCoroutine(sh.BeginMovement());
             }
         }
-
     }
 }

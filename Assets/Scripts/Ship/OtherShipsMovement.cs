@@ -18,6 +18,7 @@ public class OtherShipsMovement : MonoBehaviour
     [SerializeField] float lowerLimitMovement;
     [SerializeField] float timeToReachEnd;
 
+    [SerializeField] Movement movement;
     [SerializeField] Transform endPosition;
 
     Sequence movementSequence;
@@ -32,9 +33,6 @@ public class OtherShipsMovement : MonoBehaviour
         upperLimitMovement = lowerLimitMovement + deltaYMovement;
 
         StartShipIdle(); 
-        //StartShipMovement();
-        Invoke(nameof(StopShipIdle), 5f);
-
     }
 
     public void StartShipMovement()
@@ -46,13 +44,11 @@ public class OtherShipsMovement : MonoBehaviour
         movementSequence.SetLoops(999, LoopType.Restart);
 
         transform.DOMoveX(endPosition.position.x, timeToReachEnd).SetEase(Ease.InOutSine);
-        transform.DOMoveZ(endPosition.position.z, timeToReachEnd).SetEase(Ease.InOutSine);       
+        transform.DOMoveZ(endPosition.position.z, timeToReachEnd).SetEase(Ease.InOutSine).OnComplete(() => { StartCoroutine(BeginIdleWaveMovement()); });       
     }
 
     public void StartShipIdle()
     {
-        StopShipMovement();
-
         idleSequence = DOTween.Sequence()
             .Append(transform.DOMoveY(upperLimitIdle, periodIdle / 2).SetEase(Ease.InOutQuad))
             .Append(transform.DOMoveY(lowerLimitIdle, periodIdle / 2).SetEase(Ease.InOutQuad));
@@ -67,16 +63,32 @@ public class OtherShipsMovement : MonoBehaviour
 
     void StopShipMovement()
     {
-        transform.DOTogglePause();
+        StartCoroutine(BeginIdleWaveMovement());        
     }
 
-    IEnumerator BeginMovement()
+
+    IEnumerator BeginIdleWaveMovement()
     {
-        print("Coroutine started");
-        yield return idleSequence.WaitForRewind();
-        idleSequence.Complete();
-        print("Completed coroutine");
+        print("Called iddle coroutine");
+        yield return movementSequence.WaitForElapsedLoops(1);
+
+        movementSequence.Complete();
+        movementSequence.Kill();
         yield return null;
+
+        StartShipIdle();
+        print("Finish coroutine");
+    }
+
+    public IEnumerator BeginMovement()
+    {
+        yield return idleSequence.WaitForElapsedLoops(1); // si, despues de 3h figuré que esta era la forma para solucionar el problema del Stutter sin necesidad que coordinar otro Tweener durante previo a la nueva secuencia.
+        idleSequence.Complete(); // Completar la secuencia para evitar los "residuos" del tweener entrando en conflicto con el siguiente
+        idleSequence.Kill();
+
+        yield return null; // Esperar un frame, solo por sanidad personal.
         StartShipMovement();
+        movement.Move();
+        movement.CanMove = true;
     }
 }

@@ -9,11 +9,19 @@ public class Movement : MonoBehaviour
 
     bool canMove = false;
     public bool CanMove { get => canMove; set => canMove = value;}
+
+    bool alreadyMoved = false;
+    public bool AlreadyMoved { get => alreadyMoved; set => alreadyMoved = value; }
+
     [SerializeField] Transform endPosition;
     [SerializeField] float timeToReachEnd;
 
     public void Move()
     {
-        transform.DOMove(endPosition.position, timeToReachEnd).SetEase(Ease.InOutSine);
+        if (!alreadyMoved)
+        {
+            transform.DOMove(endPosition.position, timeToReachEnd).SetEase(Ease.InOutSine);
+            alreadyMoved = true;
+        }
     }
 }
