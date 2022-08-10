@@ -16,11 +16,19 @@ public class VR_Teleport : MonoBehaviour
     void Start()
     {
         time = timer;       
+
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            panel.color = new Color(0, 0, 0, 1);
+            StartCoroutine(FadeIn());
+        }
     }
 
     // Update is called once per frame
     void Update()
-    {        
+    {
+        if (SceneManager.GetActiveScene().buildIndex == 1) return;
+
         time -= Time.deltaTime;
         if(time < 2)
         {
@@ -44,5 +52,14 @@ public class VR_Teleport : MonoBehaviour
             yield return null;
         }
         print("b");
+    }
+
+    IEnumerator FadeIn()
+    {
+        while (panel.color.a >= 0)
+        {
+            panel.color = new Color(0, 0, 0, panel.color.a - 0.001f);
+            yield return null;
+        }
     }
 }
