@@ -29,10 +29,17 @@ public class Movement : MonoBehaviour
         }
     }
 
+    [SerializeField] GameObject anchorEventFailure;
+    [SerializeField] GameObject anchorEventSuccess;
+    [SerializeField] GameObject talkToColon;
+
     void AllowColon()
     {
         hasStoped = true;
         colonOutline.OutlineWidth = 4;
+        anchorEventSuccess.SetActive(false);
+        anchorEventFailure.SetActive(false);
+        talkToColon.SetActive(true);
     }
 
     private void OnDisable()

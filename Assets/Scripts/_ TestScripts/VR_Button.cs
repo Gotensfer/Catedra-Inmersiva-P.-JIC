@@ -15,6 +15,11 @@ public class VR_Button : MonoBehaviour
     [SerializeField] float eventTimeRemaining;
     [SerializeField] BoxCollider boxCollider;
 
+    [SerializeField] GameObject anchorEventBegin;
+    [SerializeField] GameObject anchorHurryText;
+    [SerializeField] GameObject anchorEventFailure;
+    [SerializeField] GameObject anchorEventSuccess;
+
     //Eventos de interacción
     public UnityEvent onPressed, onReleassed;
 
@@ -25,11 +30,19 @@ public class VR_Button : MonoBehaviour
         outline.OutlineWidth = 0;
     }
 
+    bool hurryFlag = false;
     private void Update()
     {
         if (anchorEventIsOn)
         {
             eventTimeRemaining -= Time.deltaTime;
+
+            if (eventTimeRemaining <= timeForEvent/2 && !hurryFlag)
+            {
+                anchorEventBegin.SetActive(false);
+                anchorHurryText.SetActive(true);
+                hurryFlag = true;
+            }
 
             if (eventTimeRemaining <= 0)
             {
@@ -49,6 +62,8 @@ public class VR_Button : MonoBehaviour
             Debug.Log("Me presionaste");
             alreadyPressed = true;
             outline.OutlineWidth = 0;
+            anchorEventIsOn = false;
+            
         }
     }
 
@@ -71,11 +86,17 @@ public class VR_Button : MonoBehaviour
 
     public void AnchorEvent_SuccessResolution()
     {
-        print("Won");
+        anchorEventBegin.SetActive(false);
+        anchorHurryText.SetActive(false);
+        anchorEventSuccess.SetActive(true);
+        print("success");
     }
 
     public void AnchorEvent_FailureResolution()
     {
+        anchorEventBegin.SetActive(false);
+        anchorHurryText.SetActive(false);
+        anchorEventFailure.SetActive(true);
         print("Failure");
     }
 }

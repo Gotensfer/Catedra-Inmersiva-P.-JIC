@@ -13,6 +13,10 @@ public class ShipWheelController : MonoBehaviour, IInteractive
     [SerializeField] BoxCollider buttonCollider;
     [SerializeField] VR_Button vR_Button;
 
+    [SerializeField] GameObject wheelEventText;
+    [SerializeField] GameObject wheelEventResolutionText;
+    [SerializeField] GameObject anchorEventBegin;
+
     public bool Interacted { get => interacted; set => interacted = value; }
 
     public void Interact()
@@ -30,7 +34,10 @@ public class ShipWheelController : MonoBehaviour, IInteractive
                 sh.StartCoroutine(sh.BeginMovement());
             }
 
-            Invoke(nameof(AllowAnchorEvent), 10f);
+            Invoke(nameof(AllowAnchorEvent), 8f);
+
+            wheelEventText.SetActive(false);
+            wheelEventResolutionText.SetActive(true);
         }
     }
 
@@ -39,5 +46,8 @@ public class ShipWheelController : MonoBehaviour, IInteractive
         buttonCollider.enabled = true;
         vR_Button.outline.OutlineWidth = 2;
         vR_Button.anchorEventIsOn = true;
+
+        wheelEventResolutionText.SetActive(false);
+        anchorEventBegin.SetActive(true);
     }
 }
