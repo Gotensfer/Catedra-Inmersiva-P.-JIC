@@ -91,4 +91,10 @@ public class OtherShipsMovement : MonoBehaviour
         movement.Move();
         movement.CanMove = true;
     }
+
+    private void OnDisable()
+    {
+        idleSequence.Kill();
+        movementSequence.Kill();
+    }
 }
