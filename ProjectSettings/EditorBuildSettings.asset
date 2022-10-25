@@ -14,12 +14,15 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Ship Colon Cinematic.unity
     guid: 2258747f9f70a15469b3d811cc450b08
-  - enabled: 1
+  - enabled: 0
     path: Assets/Experimental/VR Implementation/Scenes/Catedra VR Panchu.unity
     guid: 648a66875bd706443b3abd21137dddd6
-  - enabled: 1
+  - enabled: 0
     path: Assets/Experimental/VR Implementation/Scenes/Catedra VR Panchu Origin Island.unity
     guid: d7a5385131532394399baac30ce4a4b8
+  - enabled: 1
+    path: Assets/Scenes/Corona/Corona_Panchu.unity
+    guid: 75bbd313a228d78429613ba5dfacd8d0
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260,
       type: 2}
